@@ -13,6 +13,7 @@ This is EEA's base image for Cynin instance.
 
 ### Environment variables
 You can create new images by modifying these variables:
+
  - CYNIN_PATH
  - CYNIN_BUILDOUT
  - CYNIN_NAME
