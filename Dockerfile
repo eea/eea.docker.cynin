@@ -1,7 +1,6 @@
 FROM eeacms/centos:7
 
 # CYNIN installation
-ENV CYNIN_VERSION 3.2.2
 ENV CYNIN_PATH /var/local
 ENV CYNIN_BUILDOUT https://svn.eionet.europa.eu/repositories/Zope/trunk/community.eea.europa.eu/trunk 
 ENV CYNIN_NAME community.eea.europa.eu
