@@ -7,7 +7,7 @@ ENV CYNIN_NAME community.eea.europa.eu
 ENV INSTANCEDIR $CYNIN_PATH/$CYNIN_NAME
 
 # needed for proper PIL compiling
-RUN yum install -y freetype-devel && \
+RUN yum install -y freetype-devel nano && \
     ln -s /usr/lib64/libfreetype.so.6 /usr/lib/libfreetype.so && \
     ln -s /usr/lib64/libz.so /usr/lib/ && \
     ln -s /usr/lib64/libjpeg.so /usr/lib/
