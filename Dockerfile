@@ -2,7 +2,7 @@ FROM eeacms/centos:7
 
 # CYNIN installation
 ENV CYNIN_PATH /var/local
-ENV CYNIN_BUILDOUT https://svn.eionet.europa.eu/repositories/Zope/trunk/community.eea.europa.eu/trunk 
+ENV CYNIN_BUILDOUT https://svn.eionet.europa.eu/repositories/Zope/trunk/community.eea.europa.eu/trunk
 ENV CYNIN_NAME community.eea.europa.eu
 ENV INSTANCEDIR $CYNIN_PATH/$CYNIN_NAME
 
@@ -20,6 +20,6 @@ WORKDIR $INSTANCEDIR
 
 RUN svn co $CYNIN_BUILDOUT . && ./install.sh
 
-RUN bin/buildout -c base.cfg
+RUN bin/buildout -c deploy.cfg
 
 USER root
