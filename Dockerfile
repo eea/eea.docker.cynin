@@ -1,4 +1,4 @@
-FROM eeacms/centos:7
+FROM eeacms/centos:7s
 
 # CYNIN installation
 ENV CYNIN_PATH /var/local
