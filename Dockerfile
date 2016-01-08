@@ -1,4 +1,4 @@
-FROM eeacms/centos:7s
+FROM eeacms/centos:7
 MAINTAINER "IDM2 A-Team" <eea-edw-a-team-alerts@googlegroups.com>
 
 # Cyn.in installation
