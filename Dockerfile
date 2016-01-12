@@ -5,6 +5,7 @@ ENV CYNIN_PATH /var/local
 ENV CYNIN_BUILDOUT https://svn.eionet.europa.eu/repositories/Zope/trunk/community.eea.europa.eu/trunk
 ENV CYNIN_NAME community.eea.europa.eu
 ENV INSTANCEDIR $CYNIN_PATH/$CYNIN_NAME
+COPY chaperone.conf /etc/chaperone.d/chaperone.conf
 
 # needed for proper PIL compiling
 RUN ln -s /usr/lib64/libfreetype.so.6 /usr/lib/libfreetype.so && \
@@ -19,3 +20,5 @@ RUN groupadd -g 500 cynin && \
 USER cynin
 RUN svn co $CYNIN_BUILDOUT . && ./install.sh
 RUN bin/buildout -c deploy.cfg
+ENTRYPOINT ["/usr/local/bin/chaperone"]
+CMD ["--user", "cynin"]
