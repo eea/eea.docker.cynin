@@ -10,7 +10,9 @@ COPY chaperone.conf /etc/chaperone.d/chaperone.conf
 # needed for proper PIL compiling
 RUN ln -s /usr/lib64/libfreetype.so.6 /usr/lib/libfreetype.so && \
     ln -s /usr/lib64/libz.so /usr/lib/ && \
-    ln -s /usr/lib64/libjpeg.so /usr/lib/
+    ln -s /usr/lib64/libjpeg.so /usr/lib/ && \
+    curl https://bootstrap.pypa.io/get-pip.py | python3.4 && \
+    pip3 install chaperone
 
 WORKDIR $INSTANCEDIR
 RUN groupadd -g 500 cynin && \
@@ -20,5 +22,5 @@ RUN groupadd -g 500 cynin && \
 USER cynin
 RUN svn co $CYNIN_BUILDOUT . && ./install.sh
 RUN bin/buildout -c deploy.cfg
-ENTRYPOINT ["/usr/local/bin/chaperone"]
+ENTRYPOINT ["/usr/bin/chaperone"]
 CMD ["--user", "cynin"]
