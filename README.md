@@ -2,27 +2,30 @@
 
 This is EEA's base image for Cynin instance.
 
-### Repository
-- [hub.docker.com](https://registry.hub.docker.com/u/eeacms/cynin/)
+## Base docker image
+
+- [hub.docker.com](https://registry.hub.docker.com/r/eeacms/cynin)
+
+## Source code
+
+  - [github.com](http://github.com/eea/eea.docker.cynin)
 
 ### Projects
+
 - [EEA Community](https://github.com/eea/eea.docker.community)
 
 ### Tags (version of Cynin Instance)
+
 - latest
 
 ### Environment variables
-You can create new images by modifying these variables:
 
- - CYNIN_PATH
- - CYNIN_BUILDOUT
- - CYNIN_NAME
- - INSTANCEDIR
+You can customize your deployment by modifying this variable:
+
+ - `SERVICES=zope` will start only www1 Zope instance inside container
+ - `SERVICES=zeo` will start only Zeo server inside container
 
 ### How to use this image
-  
-  **Create a Cynin instance**
-  
-    FROM eeacms/cynin
-    
-    RUN bin/instance fg
+
+    $ docker run -e SERVICES=zeo --name=zeo eeacms/cynin
+    $ docker run -e SERVICES=zope --link=zeo --name=zope -p 8080:8080 eeacms/cynin
