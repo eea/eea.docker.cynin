@@ -2,7 +2,7 @@ FROM eeacms/centos:7
 MAINTAINER "EEA: IDM2 A-Team" <eea-edw-a-team-alerts@googlegroups.com>
 
 ENV CYNIN_PATH /var/local
-ENV CYNIN_BUILDOUT https://svn.eionet.europa.eu/repositories/Zope/trunk/community.eea.europa.eu/trunk
+ENV CYNIN_BUILDOUT https://svn.eionet.europa.eu/repositories/Zope/trunk/community.eea.europa.eu/tags/2.0
 ENV CYNIN_NAME community.eea.europa.eu
 ENV INSTANCEDIR $CYNIN_PATH/$CYNIN_NAME
 
