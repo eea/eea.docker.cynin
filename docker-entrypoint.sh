@@ -15,7 +15,7 @@ if [[ "${SERVICES}" == "zope" ]]; then
 fi
 
 if [[ "${SERVICES}" == "zeo" ]]; then
-   CMD=${CYNIN_PATH}/bin/www1
+   CMD=${CYNIN_PATH}/bin/zeoserver
 fi
 
 
