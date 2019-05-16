@@ -1,4 +1,4 @@
-FROM python:2
+FROM debian:stretch
 MAINTAINER "EEA: IDM2 A-Team" <eea-edw-a-team-alerts@googlegroups.com>
 
 ENV CYNIN_PATH /var/local
@@ -7,7 +7,8 @@ ENV CYNIN_NAME community.eea.europa.eu
 ENV INSTANCEDIR $CYNIN_PATH/$CYNIN_NAME
 
 RUN  apt-get update && \
-    apt-get -y install libsasl2-dev libldap2-dev libssl1.0-dev cron gosu nano libfreetype6 && \
+     apt-get -y  install ca-certificates git wget gcc build-essential libxml2-dev libssl-dev  libxmlsec1-dev zlib1g-dev subversion cron gosu nano && \
+     apt-get -y install libsasl2-dev libldap2-dev libssl1.0-dev && \
     mkdir /opt/python-2.4 && \
     cd /tmp && \
     wget https://www.python.org/ftp/python/2.4.6/Python-2.4.6.tgz && \

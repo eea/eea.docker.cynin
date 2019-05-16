@@ -35,7 +35,8 @@ python -V
 
 
 echo "Pip install"
-pip install -vvv  -i $INDEX  $SETUPTOOLS $ZCBUILDOUT
+pip install -i $INDEX  $SETUPTOOLS $ZCBUILDOUT
+pip install -i $INDEX  Pillow==1.7.8 
 
 
 
