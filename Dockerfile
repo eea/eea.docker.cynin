@@ -6,6 +6,17 @@ ENV CYNIN_BUILDOUT https://svn.eionet.europa.eu/repositories/Zope/trunk/communit
 ENV CYNIN_NAME community.eea.europa.eu
 ENV INSTANCEDIR $CYNIN_PATH/$CYNIN_NAME
 
+
+
+RUN groupadd -g 500 cynin && \
+    mkdir -p $INSTANCEDIR && \
+    useradd cynin -d $INSTANCEDIR -u 500 -g cynin && \
+    chown -R cynin:cynin $INSTANCEDIR
+
+
+COPY install.sh /tmp/
+
+
 RUN  apt-get update && \
      apt-get -y  install ca-certificates git wget gcc build-essential libxml2-dev libssl-dev  libxmlsec1-dev zlib1g-dev subversion cron gosu nano && \
      apt-get -y install libsasl2-dev libldap2-dev libssl1.0-dev && \
@@ -26,6 +37,16 @@ RUN  apt-get update && \
     make install && \
     ls /opt/python-2.4/bin && \
     ln -s  /opt/python-2.4/bin/python2.4 //usr/local/bin/python2.4 && \
+    cd $INSTANCEDIR && \
+    svn co $CYNIN_BUILDOUT . && \
+    mv /tmp/install.sh . && \
+    ./install.sh && \
+    ./bin/buildout -c deploy.cfg && \
+    touch var/log/event.log && \
+    chown -R cynin:cynin $INSTANCEDIR && \
+    apt-get remove -y --purge git subversion gcc build-essential libxml2-dev libssl-dev  libxmlsec1-dev zlib1g-dev libsasl2-dev libldap2-dev libssl1.0-dev && \
+    apt-get autoremove -y && \
+    apt-get autoclean && \
     rm -rf /var/lib/apt/lists/* 
 
 # needed for proper PIL compiling
@@ -34,20 +55,8 @@ RUN  apt-get update && \
 #    ln -s /usr/lib64/libjpeg.so /usr/lib/ && \
 #    curl https://bootstrap.pypa.io/get-pip.py | python3.4 
 
-RUN groupadd -g 500 cynin && \
-    mkdir -p $INSTANCEDIR && \
-    useradd cynin -d $INSTANCEDIR -u 500 -g cynin && \
-    chown -R cynin:cynin $INSTANCEDIR
 
 WORKDIR $INSTANCEDIR
-
-USER cynin
-RUN svn co $CYNIN_BUILDOUT . 
-COPY install.sh ./
-RUN ./install.sh
-
-RUN ./bin/buildout -c deploy.cfg
-RUN touch var/log/event.log
 
 
 USER root
