@@ -1,4 +1,4 @@
-##  Cynin 3.2.2 Docker image
+##  Cynin 4.0 Docker image
 
 This is EEA's base image for Cynin instance.
 
