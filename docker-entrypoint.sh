@@ -38,13 +38,13 @@ if [[ $START == *"$1"* ]]; then
 
   trap _stop SIGTERM SIGINT
   gosu cynin $CMD start
-  gosu cynin $CMD logtail &
   child=$!
 
   pid=`$CMD status | sed 's/[^0-9]*//g'`
   if [ ! -z "$pid" ]; then
     echo "Application running on pid=$pid"
     sleep "$HEALTH_CHECK_TIMEOUT"
+    gosu cynin $CMD logtail &
     while kill -0 "$pid" 2> /dev/null; do
       sleep "$HEALTH_CHECK_INTERVAL"
     done
@@ -52,6 +52,8 @@ if [[ $START == *"$1"* ]]; then
     echo "Application didn't start normally. Shutting down!"
     _stop
   fi
+
+
 else
   if [[ $COMMANDS == *"$1"* ]]; then
     exec gosu cynin $CMD "$@"
