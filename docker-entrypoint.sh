@@ -37,6 +37,9 @@ if [[ $START == *"$1"* ]]; then
   }
 
   trap _stop SIGTERM SIGINT
+  touch /var/local/community.eea.europa.eu/var/log/event.log
+  chown cynin:cynin /var/local/community.eea.europa.eu/var/log/event.log
+
   gosu cynin $CMD start
   child=$!
 
