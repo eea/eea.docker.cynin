@@ -44,7 +44,7 @@ RUN  apt-get update && \
     ./bin/buildout -c deploy.cfg && \
     touch var/log/event.log && \
     chown -R cynin:cynin $INSTANCEDIR && \
-    apt-get remove -y --purge git subversion gcc build-essential libxml2-dev libssl-dev  libxmlsec1-dev zlib1g-dev libsasl2-dev libldap2-dev libssl1.0-dev && \
+    apt-get remove -y --purge git subversion gcc build-essential libxml2-dev libxmlsec1-dev zlib1g-dev libsasl2-dev libldap2-dev && \
     apt-get autoremove -y && \
     apt-get autoclean && \
     rm -rf /var/lib/apt/lists/* 
