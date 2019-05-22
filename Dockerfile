@@ -18,7 +18,7 @@ COPY install.sh /tmp/
 
 
 RUN  apt-get update && \
-     apt-get -y  install ca-certificates git wget gcc build-essential libxml2-dev libssl-dev  libxmlsec1-dev zlib1g-dev subversion cron gosu nano && \
+     apt-get -y  install ca-certificates git wget gcc build-essential libxml2-dev libssl-dev  libxmlsec1-dev zlib1g-dev subversion cron gosu nano libxslt-dev && \
      apt-get -y install libsasl2-dev libldap2-dev libssl1.0-dev && \
     mkdir /opt/python-2.4 && \
     cd /tmp && \
@@ -44,7 +44,7 @@ RUN  apt-get update && \
     ./bin/buildout -c deploy.cfg && \
     touch var/log/event.log && \
     chown -R cynin:cynin $INSTANCEDIR && \
-    apt-get remove -y --purge git subversion gcc build-essential && \
+    apt-get remove -y --purge git subversion gcc build-essential zlib1g-dev libssl-dev libxmlsec1-dev  && \
     apt-get autoremove -y && \
     apt-get autoclean && \
     rm -rf /var/lib/apt/lists/* 
