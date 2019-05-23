@@ -2,7 +2,7 @@ FROM debian:stretch-slim
 MAINTAINER "EEA: IDM2 A-Team" <eea-edw-a-team-alerts@googlegroups.com>
 
 ENV CYNIN_PATH /var/local
-ENV CYNIN_BUILDOUT https://svn.eionet.europa.eu/repositories/Zope/trunk/community.eea.europa.eu/tags/2.0
+ENV CYNIN_BUILDOUT https://svn.eionet.europa.eu/repositories/Zope/trunk/community.eea.europa.eu/tags/2.3
 ENV CYNIN_NAME community.eea.europa.eu
 ENV INSTANCEDIR $CYNIN_PATH/$CYNIN_NAME
 
@@ -35,7 +35,9 @@ RUN  apt-get update && \
              libxslt-dev \ 
              libxslt1-dev \ 
              libz-dev \
-             zlib1g-dev && \  
+             zlib1g-dev \
+             libfreetype6 \ 
+             libfreetype6-dev  && \  
     apt-get -y install libssl1.0-dev libjpeg62 libpng16-16  librsvg2-bin && \
     mkdir /opt/python-2.4 && \
     cd /tmp && \

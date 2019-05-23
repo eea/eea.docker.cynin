@@ -39,6 +39,9 @@ pip install -i $INDEX  $SETUPTOOLS $ZCBUILDOUT
 pip install -i $INDEX  Pillow==1.7.8 
 
 
+sed -i '/^PILwoTk/d' versions.cfg
+rm buildout-configs/pil.cfg
+sed -i '/pil.cfg/d' base.cfg
 
 fi
 
