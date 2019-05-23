@@ -18,8 +18,25 @@ COPY install.sh /tmp/
 
 
 RUN  apt-get update && \
-     apt-get -y  install ca-certificates git wget gcc build-essential libxml2-dev libssl-dev  libxmlsec1-dev zlib1g-dev subversion cron gosu nano libxslt-dev && \
-     apt-get -y install libsasl2-dev libldap2-dev libssl1.0-dev && \
+     apt-get -y  install ca-certificates git wget gcc build-essential subversion cron gosu nano \
+             libblas-dev \ 
+             libc6-dev \ 
+             libexpat1-dev \ 
+             libjpeg-dev  \ 
+             liblapack-dev \ 
+             libldap2-dev \ 
+             libmemcached-dev \ 
+             libpq-dev \ 
+             libreadline-dev \ 
+             libsasl2-dev  \ 
+             libssl-dev \ 
+             libxml2-dev \ 
+             libxmlsec1-dev  \ 
+             libxslt-dev \ 
+             libxslt1-dev \ 
+             libz-dev \
+             zlib1g-dev && \  
+    apt-get -y install libssl1.0-dev libjpeg62 libpng16-16  librsvg2-bin && \
     mkdir /opt/python-2.4 && \
     cd /tmp && \
     wget https://www.python.org/ftp/python/2.4.6/Python-2.4.6.tgz && \
