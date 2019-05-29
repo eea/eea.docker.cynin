@@ -2,7 +2,7 @@ FROM debian:stretch-slim
 MAINTAINER "EEA: IDM2 A-Team" <eea-edw-a-team-alerts@googlegroups.com>
 
 ENV CYNIN_PATH /var/local
-ENV CYNIN_BUILDOUT https://svn.eionet.europa.eu/repositories/Zope/trunk/community.eea.europa.eu/tags/2.3
+ENV CYNIN_BUILDOUT https://svn.eionet.europa.eu/repositories/Zope/trunk/community.eea.europa.eu/tags/2.4
 ENV CYNIN_NAME community.eea.europa.eu
 ENV INSTANCEDIR $CYNIN_PATH/$CYNIN_NAME
 
@@ -19,32 +19,32 @@ COPY install.sh /tmp/
 
 RUN  apt-get update && \
      apt-get -y  install ca-certificates git wget gcc build-essential subversion cron gosu nano \
-             libblas-dev \ 
-             libc6-dev \ 
-             libexpat1-dev \ 
-             libjpeg-dev  \ 
-             liblapack-dev \ 
-             libldap2-dev \ 
-             libmemcached-dev \ 
-             libpq-dev \ 
-             libreadline-dev \ 
-             libsasl2-dev  \ 
-             libssl-dev \ 
-             libxml2-dev \ 
-             libxmlsec1-dev  \ 
-             libxslt-dev \ 
-             libxslt1-dev \ 
+             libblas-dev \
+             libc6-dev \
+             libexpat1-dev \
+             libjpeg-dev  \
+             liblapack-dev \
+             libldap2-dev \
+             libmemcached-dev \
+             libpq-dev \
+             libreadline-dev \
+             libsasl2-dev  \
+             libssl-dev \
+             libxml2-dev \
+             libxmlsec1-dev  \
+             libxslt-dev \
+             libxslt1-dev \
              libz-dev \
              zlib1g-dev \
-             libfreetype6 \ 
-             libfreetype6-dev  && \  
+             libfreetype6 \
+             libfreetype6-dev  && \
     apt-get -y install libssl1.0-dev libjpeg62 libpng16-16  librsvg2-bin && \
     mkdir /opt/python-2.4 && \
     cd /tmp && \
     wget https://www.python.org/ftp/python/2.4.6/Python-2.4.6.tgz && \
     tar zxf Python-2.4.6.tgz && \
     cd Python-2.4.6 && \
-    find / -name *ssl && \ 
+    find / -name *ssl && \
     grep -i ssl Modules/Setup.dist  && \
     sed -i '/_ssl/s/^#//g' Modules/Setup.dist && \
     sed -i '/DUSE_SSL/s/^#//g' Modules/Setup.dist && \
@@ -66,13 +66,13 @@ RUN  apt-get update && \
     apt-get remove -y --purge git subversion gcc build-essential zlib1g-dev libssl-dev libxmlsec1-dev  && \
     apt-get autoremove -y && \
     apt-get autoclean && \
-    rm -rf /var/lib/apt/lists/* 
+    rm -rf /var/lib/apt/lists/*
 
 # needed for proper PIL compiling
 #RUN ln -s /usr/lib64/libfreetype.so.6 /usr/lib/libfreetype.so && \
 #    ln -s /usr/lib64/libz.so /usr/lib/ && \
 #    ln -s /usr/lib64/libjpeg.so /usr/lib/ && \
-#    curl https://bootstrap.pypa.io/get-pip.py | python3.4 
+#    curl https://bootstrap.pypa.io/get-pip.py | python3.4
 
 
 WORKDIR $INSTANCEDIR
